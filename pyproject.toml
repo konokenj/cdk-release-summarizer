@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "github-release-summarizer"
+version = "0.1.0"
+description = ""
+authors = ["Kenji Kono <konoken@amazon.co.jp>"]
+readme = "README.md"
+packages = [{include = "github_release_summarizer", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+boto3 = "^1.35.87"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
