@@ -9,7 +9,10 @@ GitHub でホストされている OSS の Release Note を分析して、各 Pu
 
 ## How to use
 
+AWS CLI の認証はあらかじめ済ませておいてください。GitHub API の呼び出しには Personal Access Token が必要です。
+
 ```sh
+export GITHUB_TOKEN=xxxxxxxxxxxxxxxxxxxxx
 poetry install
 poetry run python src/github_release_summarizer/main.py https://github.com/aws/aws-cdk/releases/tag/v2.173.0
 ```
