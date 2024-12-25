@@ -1,12 +1,12 @@
 from functools import cache
 import re
+from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 import boto3
 from typing import List
 
 
-@dataclass
-class PullRequestData:
+class PullRequestData(BaseModel):
     owner: str
     repo: str
     title: str
@@ -15,8 +15,7 @@ class PullRequestData:
     diff: str
 
 
-@dataclass
-class ConverseResult:
+class ConverseResult(BaseModel):
     text: str
     stop_reason: str
     input_tokens: int

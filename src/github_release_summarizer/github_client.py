@@ -35,6 +35,7 @@ class GitHubClient:
 
     def get_diff(self, owner: str, repo: str, pr_number: str) -> str:
         response = requests.get(
-            f"https://patch-diff.githubusercontent.com/raw/{owner}/{repo}/pull/{pr_number}.diff"
+            f"https://patch-diff.githubusercontent.com/raw/{owner}/{repo}/pull/{pr_number}.diff",
+            allow_redirects=False,
         )
         return response.text

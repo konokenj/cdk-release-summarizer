@@ -110,9 +110,7 @@ class PageAnalyzer:
                 comments.append(comment["body"])
         return comments
 
-    def filter_diff(
-        self, diff_content: str, exclude_pattern: str = r"(\.snapshot|integ\.)"
-    ):
+    def filter_diff(self, diff_content: str, exclude_pattern: str = r"\.snapshot"):
         # Find all positions of "diff --git" at the start of lines
         positions = [
             m.start() for m in re.finditer(r"^diff --git", diff_content, re.MULTILINE)

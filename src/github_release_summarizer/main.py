@@ -4,7 +4,6 @@ from analyzer import PageAnalyzer
 from github_client import GitHubClient
 from bedrock_client import BedrockClient, PullRequestData
 import os
-import logging
 
 
 def parse_args():
@@ -50,14 +49,18 @@ def main():
                     f"#{related_issue_number}: {related_issue["body"]}"
                 )
 
+            diff = github_client.get_diff(owner, repo, pr.pr_number)
+            diff = page_analyzer.filter_diff(diff)
+
             pr_data = PullRequestData(
                 owner=owner,
                 repo=repo,
                 title=pr.title,
                 description=description,
                 related_issue_descriptions=related_issue_descriptions,
-                diff=github_client.get_diff(owner, repo, pr.pr_number),
+                diff=diff,
             )
+            # print(pr_data.model_dump_json())
             summary_result = bedrock_client.generate_summary(pr_data)
             if summary_result.stop_reason != "end_turn":
                 print(f"Unexpected stop reason: {summary_result.stop_reason}")
