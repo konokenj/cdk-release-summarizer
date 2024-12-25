@@ -1,7 +1,5 @@
-from functools import cache
 import re
 from pydantic import BaseModel
-from pydantic.dataclasses import dataclass
 import boto3
 from typing import List
 
